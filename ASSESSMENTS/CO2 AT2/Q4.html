@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Question 4 - Mobile First Blog Layout</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+body{background:#f5f7fb;color:#333;line-height:1.6}
+header{background:linear-gradient(90deg,#0f766e,#14b8a6);color:#fff;text-align:center;padding:30px 15px}
+.container{width:92%;max-width:1200px;margin:30px auto}
+.hero{background:#fff;border-radius:16px;padding:25px;box-shadow:0 8px 20px rgba(0,0,0,.12);margin-bottom:25px}
+.hero img{width:100%;height:220px;object-fit:cover;border-radius:12px;background:#cbd5e1}
+.hero h2{margin:15px 0;color:#0f766e}
+.grid{display:grid;grid-template-columns:1fr;gap:20px}
+.post,.answer{background:#fff;border-radius:14px;padding:20px;box-shadow:0 8px 18px rgba(0,0,0,.1);transition:.3s}
+.post:hover,.answer:hover{transform:translateY(-6px)}
+.tag{display:inline-block;background:#14b8a6;color:#fff;padding:4px 10px;border-radius:20px;font-size:13px;margin-bottom:10px}
+.btn{display:inline-block;margin-top:15px;background:#0f766e;color:#fff;text-decoration:none;padding:10px 16px;border-radius:8px}
+.answers{display:grid;grid-template-columns:1fr;gap:18px;margin-top:35px}
+.answer h3{color:#0f766e;margin-bottom:10px}
+.answer ul{padding-left:18px}
+footer{margin-top:40px;background:#111827;color:#fff;text-align:center;padding:18px}
+@media(min-width:768px){
+.grid{grid-template-columns:2fr 1fr}
+.answers{grid-template-columns:repeat(2,1fr)}
+.hero img{height:320px}
+}
+@media(min-width:1100px){
+.answers{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Question 4 - Mobile-First Blog Layout</h1>
+<p>Responsive Blog Design using CSS Media Queries</p>
+</header>
+
+<div class="container">
+
+<div class="hero">
+
+<h2>Featured Blog Article</h2>
+<p>This layout follows the <strong>mobile-first approach</strong>. The page is designed for small screens first and then enhanced for tablets and desktops using CSS media queries.</p>
+<a href="#" class="btn">Read More</a>
+</div>
+
+<div class="grid">
+
+<div>
+<div class="post">
+<span class="tag">Technology</span>
+<h3>Responsive Web Design</h3>
+<p>Responsive design allows web pages to adapt to different screen sizes using flexible layouts, images, and media queries, improving accessibility and usability.</p>
+<a href="#" class="btn">Continue Reading</a>
+</div>
+
+<br>
+
+<div class="post">
+<span class="tag">CSS</span>
+<h3>Why Mobile-First?</h3>
+<p>Starting with a mobile layout ensures a clean structure, faster performance, and a better experience for users on smartphones and tablets.</p>
+<a href="#" class="btn">Continue Reading</a>
+</div>
+</div>
+
+<div class="post">
+<h3>Categories</h3>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Responsive Design</li>
+<li>Web Development</li>
+</ul>
+<hr style="margin:20px 0">
+<h3>Recent Posts</h3>
+<ul>
+<li>Flexbox Tutorial</li>
+<li>CSS Grid Guide</li>
+<li>Media Queries</li>
+<li>Accessibility Tips</li>
+</ul>
+</div>
+
+</div>
+
+<div class="answers">
+
+<div class="answer">
+<h3>(a) Key Sections</h3>
+<ul>
+<li>Header</li>
+<li>Featured Article</li>
+<li>Blog Posts</li>
+<li>Sidebar</li>
+<li>Footer</li>
+</ul>
+</div>
+
+<div class="answer">
+<h3>(b) Mobile-First Design</h3>
+<ul>
+<li>Single Column Layout</li>
+<li>Flexible Width</li>
+<li>Responsive Images</li>
+<li>Simple Navigation</li>
+</ul>
+</div>
+
+<div class="answer">
+<h3>(c) Media Queries</h3>
+<ul>
+<li>Tablet: Two Columns</li>
+<li>Desktop: Expanded Layout</li>
+<li>Improved Spacing</li>
+<li>Better Readability</li>
+</ul>
+</div>
+
+<div class="answer">
+<h3>(d) Evaluation</h3>
+<ul>
+<li>Accessible Design</li>
+<li>Readable Typography</li>
+<li>Responsive Layout</li>
+<li>Enhanced User Experience</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+CO-2 Design Task | Question 4 - Mobile-First Blog Layout
+</footer>
+
+</body>
+</html>

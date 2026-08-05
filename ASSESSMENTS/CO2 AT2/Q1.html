@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Question 1 - Responsive Navigation Bar</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+body{background:#eef3f8;color:#222}
+header{position:sticky;top:0;background:linear-gradient(90deg,#2563eb,#06b6d4);padding:15px 5%;z-index:10}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:700;color:#fff}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{text-decoration:none;color:#fff;font-weight:600}
+.nav-links a:hover{color:#ffe082}
+.right{display:flex;gap:10px;align-items:center}
+input{padding:8px 12px;border:none;border-radius:20px}
+.icon,.login{background:#fff;border:none;padding:8px 14px;border-radius:20px;cursor:pointer}
+.menu{display:none;font-size:30px;color:#fff;cursor:pointer}
+.hero{padding:80px 5%;text-align:center;background:linear-gradient(135deg,#dbeafe,#ecfeff)}
+.hero h1{font-size:42px;color:#1e3a8a}
+.hero p{margin:15px auto;max-width:700px}
+.demo{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:50px 5%}
+.card{background:#fff;padding:25px;border-radius:15px;box-shadow:0 8px 18px rgba(0,0,0,.12);transition:.4s}
+.card:hover{transform:translateY(-8px)}
+.card h3{color:#2563eb;margin-bottom:15px}
+.card ul{padding-left:20px}
+.live{padding:50px 5%}
+.livebox{background:#fff;border-radius:15px;padding:30px;box-shadow:0 8px 18px rgba(0,0,0,.12)}
+.livebox h2{margin-bottom:15px;color:#1d4ed8}
+.table{width:100%;border-collapse:collapse;margin-top:15px}
+.table th,.table td{border:1px solid #ddd;padding:10px;text-align:left}
+.table th{background:#2563eb;color:#fff}
+footer{margin-top:40px;background:#0f172a;color:#fff;text-align:center;padding:18px}
+@media(max-width:900px){
+.nav-links,.right{display:none}
+.menu{display:block}
+.mobile{display:flex!important;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:#1e3a8a;padding:20px}
+.mobile li{margin:10px 0}
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">ShopEase</div>
+<ul class="nav-links" id="navMenu">
+<li><a href="#">Home</a></li>
+<li><a href="#">Products</a></li>
+<li><a href="#">Categories</a></li>
+<li><a href="#">Offers</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+<div class="right">
+<input type="text" placeholder="Search products">
+<button class="icon">🛒 Cart</button>
+<button class="login">Login</button>
+</div>
+<div class="menu" onclick="toggleMenu()">☰</div>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Question 1 - Responsive Navigation Bar Design</h1>
+<p>This page demonstrates a modern responsive navigation bar for an e-commerce website using HTML, CSS, Media Queries and JavaScript.</p>
+</section>
+
+<section class="demo">
+<div class="card">
+<h3>(a) Key Components</h3>
+<ul>
+<li>Brand Logo</li>
+<li>Navigation Links</li>
+<li>Search Bar</li>
+<li>Shopping Cart</li>
+<li>Login Button</li>
+<li>Hamburger Menu</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>(b) CSS Techniques</h3>
+<ul>
+<li>Flexbox Layout</li>
+<li>Media Queries</li>
+<li>Gradient Background</li>
+<li>Hover Effects</li>
+<li>Sticky Header</li>
+<li>Transitions</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>(c) Responsive Design</h3>
+<ul>
+<li>Desktop Full Menu</li>
+<li>Tablet Compact Layout</li>
+<li>Mobile Hamburger Menu</li>
+<li>Touch Friendly Buttons</li>
+<li>Smooth Menu Animation</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>(d) Evaluation</h3>
+<ul>
+<li>Easy Navigation</li>
+<li>Fast Access</li>
+<li>Accessible Layout</li>
+<li>Responsive on All Devices</li>
+<li>Modern User Experience</li>
+</ul>
+</div>
+</section>
+
+<section class="live">
+<div class="livebox">
+<h2>Live Evaluation</h2>
+<p>The responsive navigation bar adapts to different screen sizes. Resize the browser window to observe the hamburger menu on mobile devices.</p>
+<table class="table">
+<tr><th>Device</th><th>Navigation Style</th><th>User Experience</th></tr>
+<tr><td>Desktop</td><td>Horizontal Menu</td><td>Excellent</td></tr>
+<tr><td>Tablet</td><td>Compact Menu</td><td>Very Good</td></tr>
+<tr><td>Mobile</td><td>Hamburger Menu</td><td>Excellent</td></tr>
+</table>
+</div>
+</section>
+
+<footer>
+Responsive Navigation Bar Design - CO2 Design Task
+</footer>
+
+<script>
+function toggleMenu(){
+const nav=document.getElementById("navMenu");
+nav.classList.toggle("mobile");
+}
+</script>
+</body>
+</html>

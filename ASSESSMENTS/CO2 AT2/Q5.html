@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Question 5 - JavaScript Event Handling</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+body{background:linear-gradient(135deg,#eef2ff,#f0fdfa);color:#333}
+header{background:linear-gradient(90deg,#7c3aed,#2563eb);color:#fff;padding:25px;text-align:center}
+nav{background:#1e293b;display:flex;justify-content:space-between;align-items:center;padding:15px 5%;position:sticky;top:0}
+.logo{color:#fff;font-size:24px;font-weight:bold}
+.menu{display:flex;list-style:none}
+.menu li a{display:block;color:#fff;text-decoration:none;padding:12px 18px;border-radius:6px;transition:.3s}
+.menu li a:hover,.active{background:#2563eb}
+.toggle{display:none;color:#fff;font-size:28px;cursor:pointer}
+.container{width:90%;max-width:1200px;margin:35px auto}
+.demo,.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:#fff;padding:22px;border-radius:15px;box-shadow:0 8px 18px rgba(0,0,0,.12)}
+.card h3{color:#2563eb;margin-bottom:10px}
+.btn{margin-top:10px;padding:10px 16px;border:none;background:#2563eb;color:#fff;border-radius:8px;cursor:pointer}
+#output{margin-top:20px;background:#ecfeff;border-left:5px solid #06b6d4;padding:15px;border-radius:8px;font-weight:bold}
+footer{margin-top:40px;background:#111827;color:#fff;text-align:center;padding:18px}
+@media(max-width:768px){
+.menu{display:none;flex-direction:column;background:#1e293b;position:absolute;top:60px;right:0;width:220px}
+.menu.show{display:flex}
+.toggle{display:block}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Question 5 - JavaScript Event Handling for Dynamic Menu</h1>
+<p>Interactive Menu using HTML, CSS and JavaScript</p>
+</header>
+
+<nav>
+<div class="logo">WebSite</div>
+<ul class="menu" id="menu">
+<li><a href="#" class="active">Home</a></li>
+<li><a href="#">Products</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Gallery</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+<div class="toggle" onclick="toggleMenu()">☰</div>
+</nav>
+
+<div class="container">
+<div class="demo">
+<div class="card">
+<h3>(a) JavaScript Events</h3>
+<ul>
+<li>click</li>
+<li>mouseover</li>
+<li>mouseout</li>
+<li>mouseenter</li>
+<li>mouseleave</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>(b) Menu Toggle</h3>
+<p>Click the hamburger icon on a small screen to open or close the navigation menu.</p>
+<button class="btn" onclick="toggleMenu()">Toggle Menu</button>
+</div>
+
+<div class="card">
+<h3>(c) User Interaction</h3>
+<p>Click the button to trigger an event.</p>
+<button class="btn" id="actionBtn">Click Me</button>
+<div id="output">Waiting for user interaction...</div>
+</div>
+
+<div class="card">
+<h3>(d) Evaluation</h3>
+<ul>
+<li>Fast event handling</li>
+<li>Responsive navigation</li>
+<li>Improved usability</li>
+<li>Minimal JavaScript code</li>
+<li>Better user experience</li>
+</ul>
+</div>
+</div>
+
+<div class="answers" style="margin-top:30px">
+<div class="card">
+<h3>Performance Improvements</h3>
+<p>Use event delegation, optimize DOM updates, reduce unnecessary listeners, and debounce frequent events for better performance.</p>
+</div>
+<div class="card">
+<h3>Conclusion</h3>
+<p>JavaScript event handling enables responsive and interactive navigation, making websites more engaging and user-friendly.</p>
+</div>
+</div>
+</div>
+
+<footer>CO-2 Design Task | Question 5 - JavaScript Event Handling</footer>
+
+<script>
+function toggleMenu(){
+ document.getElementById("menu").classList.toggle("show");
+}
+document.getElementById("actionBtn").addEventListener("click",function(){
+ document.getElementById("output").innerHTML="✅ Click event executed successfully!";
+});
+const links=document.querySelectorAll(".menu a");
+links.forEach(link=>{
+ link.addEventListener("click",function(){
+   links.forEach(l=>l.classList.remove("active"));
+   this.classList.add("active");
+ });
+});
+</script>
+</body>
+</html>
