@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Registration Form</title>
+
+<style>
+
+body{
+background:linear-gradient(120deg,#0ea5e9,#2563eb);
+font-family:Segoe UI;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+padding:35px;
+width:380px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+color:#2563eb;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:2px solid #ddd;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+background:#2563eb;
+color:white;
+font-size:17px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.error{
+font-size:13px;
+color:red;
+margin-top:-6px;
+margin-bottom:8px;
+}
+
+.success{
+font-size:14px;
+text-align:center;
+color:green;
+margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Registration</h2>
+
+<input type="email" id="email" placeholder="Email">
+<div id="emailError" class="error"></div>
+
+<input type="text" id="phone" placeholder="Phone Number">
+<div id="phoneError" class="error"></div>
+
+<button onclick="validate()">Submit</button>
+
+<div id="success" class="success"></div>
+
+</div>
+
+<script>
+
+const email=document.getElementById("email");
+const phone=document.getElementById("phone");
+
+email.onkeyup=checkEmail;
+phone.onkeyup=checkPhone;
+
+function checkEmail(){
+
+let regex=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+if(regex.test(email.value)){
+document.getElementById("emailError").innerHTML="";
+return true;
+}
+else{
+document.getElementById("emailError").innerHTML="Invalid Email";
+return false;
+}
+
+}
+
+function checkPhone(){
+
+let regex=/^[6-9][0-9]{9}$/;
+
+if(regex.test(phone.value)){
+document.getElementById("phoneError").innerHTML="";
+return true;
+}
+else{
+document.getElementById("phoneError").innerHTML="Invalid Phone Number";
+return false;
+}
+
+}
+
+function validate(){
+
+if(checkEmail() && checkPhone()){
+document.getElementById("success").innerHTML="Registration Successful";
+}
+else{
+document.getElementById("success").innerHTML="";
+}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Layout Debugging</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI;
+}
+
+body{
+background:#edf7ff;
+}
+
+header{
+background:#0f766e;
+padding:20px;
+color:white;
+text-align:center;
+}
+
+.wrapper{
+
+display:flex;
+gap:20px;
+padding:20px;
+flex-wrap:wrap;
+
+}
+
+.box{
+
+flex:1 1 280px;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 6px 12px rgba(0,0,0,.1);
+
+}
+
+.box h2{
+margin-bottom:15px;
+color:#0f766e;
+}
+
+footer{
+
+background:#0f766e;
+color:white;
+text-align:center;
+padding:15px;
+
+}
+
+@media(max-width:700px){
+
+.wrapper{
+flex-direction:column;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS Layout Debugging</h1>
+
+<p>Responsive Layout without Overlapping</p>
+
+</header>
+
+<div class="wrapper">
+
+<div class="box">
+
+<h2>Box Model</h2>
+
+<p>
+
+Uses proper margin, padding, border and box-sizing to prevent layout issues.
+
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>Flexbox Layout</h2>
+
+<p>
+
+Flex-wrap allows boxes to move onto new rows instead of overlapping.
+
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>Responsive Design</h2>
+
+<p>
+
+Media Queries stack the layout vertically on mobile devices.
+
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+CSS Layout Successfully Debugged
+
+</footer>
+
+</body>
+
+</html>

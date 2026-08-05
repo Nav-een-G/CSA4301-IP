@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Retail Layout</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#eef4ff;
+}
+
+header{
+background:linear-gradient(90deg,#2563eb,#0ea5e9);
+color:white;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:25px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+display:grid;
+grid-template-columns:250px 1fr;
+gap:20px;
+padding:20px;
+}
+
+.sidebar{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,.1);
+}
+
+.content{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+footer{
+margin-top:20px;
+background:#1e293b;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+}
+
+nav ul{
+margin-top:15px;
+flex-direction:column;
+align-items:center;
+}
+
+.container{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:500px){
+
+.logo{
+font-size:22px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">Retail Shop</div>
+
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Products</a></li>
+<li><a href="#">Offers</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="sidebar">
+<h2>Categories</h2>
+<br>
+<p>Electronics</p>
+<p>Fashion</p>
+<p>Groceries</p>
+<p>Sports</p>
+<p>Furniture</p>
+</div>
+
+<div class="content">
+
+<div class="card">
+<h3>Responsive Design</h3>
+<p>Layout automatically adjusts for desktop, tablet and mobile devices.</p>
+</div>
+
+<div class="card">
+<h3>Flexbox</h3>
+<p>Navigation uses Flexbox for proper spacing and alignment.</p>
+</div>
+
+<div class="card">
+<h3>Grid Layout</h3>
+<p>Cards use CSS Grid with responsive columns.</p>
+</div>
+
+<div class="card">
+<h3>Media Queries</h3>
+<p>Screen size changes update the layout dynamically.</p>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+Responsive Layout using CSS Grid & Flexbox
+
+</footer>
+
+</body>
+</html>

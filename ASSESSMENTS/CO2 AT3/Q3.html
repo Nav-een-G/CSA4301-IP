@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Question 3 - CSS Box Model & Media Queries</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:linear-gradient(120deg,#0f172a,#1d4ed8);color:#fff}
+header{text-align:center;padding:35px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.wrapper{width:92%;max-width:1200px;margin:30px auto}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:25px}
+.panel{background:rgba(255,255,255,.1);padding:25px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.25)}
+.demo{display:flex;justify-content:center;align-items:center;padding:40px}
+.margin{background:#ef4444;padding:30px}
+.border{background:#f59e0b;padding:25px;border:8px solid #fff}
+.padding{background:#22c55e;padding:25px}
+.content{background:#2563eb;padding:35px;text-align:center;font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;margin-top:20px}
+.card{background:#fff;color:#111;padding:18px;border-radius:14px;transition:.3s}
+.card:hover{transform:translateY(-6px)}
+.relative{position:relative;background:#06b6d4}
+.absolute{position:absolute;top:10px;right:10px;background:#111;color:#fff;padding:4px 8px;border-radius:8px;font-size:.8rem}
+.fixedBtn{position:fixed;bottom:20px;right:20px;background:#22c55e;color:#fff;padding:12px 18px;border-radius:30px}
+.sticky{position:sticky;top:0;background:#7c3aed;padding:10px;border-radius:8px;margin-bottom:10px}
+ul{padding-left:18px;line-height:1.9}
+footer{text-align:center;padding:20px;background:#111827;margin-top:30px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}}
+@media(max-width:650px){header h1{font-size:1.6rem}.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>CSS Box Model, Positioning & Responsive Layout</h1>
+<p>Assessment Question 3 Demonstration</p>
+</header>
+
+<div class="wrapper">
+<div class="sticky">Resize the browser window to observe the responsive layout.</div>
+
+<div class="grid">
+<div class="panel">
+<h2>Interactive CSS Box Model</h2>
+<p style="margin:10px 0 20px">The CSS Box Model consists of <b>Content</b>, <b>Padding</b>, <b>Border</b>, and <b>Margin</b>. Using <code>box-sizing:border-box</code> helps prevent layout breaking.</p>
+
+<div class="demo">
+<div class="margin">
+<div class="border">
+<div class="padding">
+<div class="content">CONTENT</div>
+</div>
+</div>
+</div>
+</div>
+
+<h2>CSS Positioning Techniques</h2>
+<div class="cards">
+<div class="card">Static Position (Default)</div>
+<div class="card relative">Relative Position<span class="absolute">Absolute</span></div>
+<div class="card">Fixed Position → Green Button</div>
+<div class="card">Sticky Position → Purple Bar</div>
+</div>
+</div>
+
+<div class="panel">
+<h2>Why Layouts Break?</h2>
+<ul>
+<li>Fixed width elements</li>
+<li>Large images without max-width</li>
+<li>Missing <code>box-sizing</code></li>
+<li>Improper margins and padding</li>
+<li>No media queries</li>
+<li>Absolute positioning misuse</li>
+</ul>
+
+<h2 style="margin-top:20px">Media Queries</h2>
+<p>Media queries apply different CSS rules depending on screen size, ensuring that layouts adapt smoothly for mobile, tablet, and desktop devices.</p>
+
+<h2 style="margin-top:20px">Best Practices</h2>
+<ul>
+<li>Use Flexbox and CSS Grid.</li>
+<li>Use responsive units (%, rem, vw).</li>
+<li>Apply <code>box-sizing:border-box</code>.</li>
+<li>Optimize images and typography.</li>
+<li>Test on multiple devices.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="fixedBtn" id="size">Screen</div>
+
+<footer>
+Responsive CSS Layout using Box Model, Positioning and Media Queries
+</footer>
+
+<script>
+function update(){
+ const w=window.innerWidth;
+ let t="Desktop";
+ if(w<650)t="Mobile";
+ else if(w<850)t="Tablet";
+ document.getElementById("size").textContent=t+" ("+w+"px)";
+}
+update();
+window.addEventListener("resize",update);
+</script>
+</body>
+</html>

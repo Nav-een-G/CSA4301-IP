@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Question 4 - DOM Manipulation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:linear-gradient(135deg,#0f172a,#2563eb);color:#fff;transition:.4s}
+body.light{background:linear-gradient(135deg,#dbeafe,#f8fafc);color:#111}
+header{padding:25px;text-align:center;background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.container{width:92%;max-width:1200px;margin:30px auto;display:grid;grid-template-columns:2fr 1fr;gap:25px}
+.panel{background:rgba(255,255,255,.12);padding:25px;border-radius:18px;backdrop-filter:blur(10px)}
+.light .panel{background:#fff}
+.controls{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+button{padding:12px 18px;border:none;border-radius:30px;font-weight:600;cursor:pointer}
+.primary{background:#22c55e;color:#fff}
+.secondary{background:#06b6d4;color:#fff}
+.danger{background:#ef4444;color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;color:#111;padding:18px;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,.2)}
+input{width:100%;padding:12px;border:none;border-radius:10px;margin:10px 0}
+#clock{font-size:1.8rem;font-weight:700}
+footer{text-align:center;padding:20px;margin-top:25px;background:#111827;color:#ddd}
+@media(max-width:850px){.container{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>Document Object Model (DOM) Manipulation</h1>
+<p>Dynamic Content Updates without Reloading the Webpage</p>
+</header>
+
+<div class="container">
+<div class="panel">
+<h2>Interactive DOM Dashboard</h2>
+<p>The DOM represents a webpage as a tree of objects. JavaScript can access and modify HTML elements, CSS styles, and attributes dynamically without refreshing the page.</p>
+
+<div class="controls">
+<input id="textInput" placeholder="Enter new card text">
+<button class="primary" onclick="addCard()">Add Card</button>
+<button class="secondary" onclick="changeTitle()">Update Heading</button>
+<button class="danger" onclick="toggleTheme()">Toggle Theme</button>
+</div>
+
+<div class="cards" id="cards">
+<div class="card">DOM allows dynamic content updates.</div>
+<div class="card">JavaScript manipulates HTML elements.</div>
+<div class="card">No page reload is required.</div>
+</div>
+</div>
+
+<div class="panel">
+<h2>Live Information</h2>
+<p><strong>Live Clock</strong></p>
+<div id="clock"></div>
+<hr style="margin:18px 0">
+<p><strong>Counter</strong></p>
+<h1 id="count">0</h1>
+<div class="controls">
+<button class="primary" onclick="inc()">+</button>
+<button class="danger" onclick="dec()">-</button>
+</div>
+
+<h3>Performance Improvements</h3>
+<ul style="padding-left:18px;line-height:1.9">
+<li>Update only required DOM elements.</li>
+<li>Minimize unnecessary reflows.</li>
+<li>Use event delegation where possible.</li>
+<li>Cache frequently used DOM references.</li>
+<li>Optimize animations using CSS.</li>
+</ul>
+</div>
+</div>
+
+<footer>
+Question 4 - DOM Manipulation using JavaScript | Dynamic Content Update
+</footer>
+
+<script>
+const cards=document.getElementById("cards");
+const input=document.getElementById("textInput");
+function addCard(){
+ if(input.value.trim()==""){alert("Enter some text.");return;}
+ const d=document.createElement("div");
+ d.className="card";
+ d.textContent=input.value;
+ d.onclick=function(){this.remove();}
+ cards.appendChild(d);
+ input.value="";
+}
+function changeTitle(){
+ document.querySelector("header h1").textContent="DOM Updated Successfully Using JavaScript";
+}
+function toggleTheme(){
+ document.body.classList.toggle("light");
+}
+let c=0;
+function inc(){document.getElementById("count").textContent=++c;}
+function dec(){document.getElementById("count").textContent=--c;}
+function clock(){
+ document.getElementById("clock").textContent=new Date().toLocaleTimeString();
+}
+setInterval(clock,1000);clock();
+</script>
+</body>
+</html>
