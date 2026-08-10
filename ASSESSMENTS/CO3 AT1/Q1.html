@@ -1,0 +1,600 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #243b53;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #d9e2ec;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        /* Registration Card */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            color: #243b53;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #6b7785;
+            margin-bottom: 25px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd6e0;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #3498db;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .get-btn {
+            background: #3498db;
+        }
+
+        .post-btn {
+            background: #27ae60;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        /* Result */
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-left: 5px solid #27ae60;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .result h3 {
+            color: #27ae60;
+            margin-bottom: 12px;
+        }
+
+        .result p {
+            margin: 7px 0;
+        }
+
+        /* Information Section */
+        .info-section {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+
+        .info-box h3 {
+            color: #243b53;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #66788a;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            background: #243b53;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <h1>Student Registration System</h1>
+
+        <p>Java Servlet Based Web Application</p>
+
+    </header>
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Online Student Registration</h2>
+
+            <p class="description">
+                Enter your details below to register for the college system.
+            </p>
+
+
+            <!-- Registration Form -->
+
+            <form id="registrationForm">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Student Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter student name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="regno">
+                        Register Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="regno"
+                        placeholder="Enter register number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email address"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="department">
+                        Department
+                    </label>
+
+                    <select id="department">
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                        <option value="Computer Science and Engineering">
+                            Computer Science and Engineering
+                        </option>
+
+                        <option value="Information Technology">
+                            Information Technology
+                        </option>
+
+                        <option value="Electronics and Communication">
+                            Electronics and Communication
+                        </option>
+
+                        <option value="Mechanical Engineering">
+                            Mechanical Engineering
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        class="get-btn"
+                        onclick="submitForm('GET')"
+                    >
+                        Submit using GET
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="post-btn"
+                        onclick="submitForm('POST')"
+                    >
+                        Submit using POST
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- Result -->
+
+            <div class="result" id="result">
+
+                <h3>Registration Successful</h3>
+
+                <p>
+                    <strong>Request Method:</strong>
+                    <span id="method"></span>
+                </p>
+
+                <p>
+                    <strong>Student Name:</strong>
+                    <span id="resultName"></span>
+                </p>
+
+                <p>
+                    <strong>Register Number:</strong>
+                    <span id="resultRegno"></span>
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    <span id="resultEmail"></span>
+                </p>
+
+                <p>
+                    <strong>Department:</strong>
+                    <span id="resultDepartment"></span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Servlet Information -->
+
+        <div class="info-section">
+
+            <div class="info-box">
+
+                <h3>init()</h3>
+
+                <p>
+                    The init() method is called only once when
+                    the servlet is initialized. It is used for
+                    initialization tasks such as loading
+                    configuration or database connections.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>service()</h3>
+
+                <p>
+                    The service() method receives client requests
+                    and sends responses. It determines whether
+                    the request should be processed by doGet()
+                    or doPost().
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>destroy()</h3>
+
+                <p>
+                    The destroy() method is called before the
+                    servlet is removed from service. It is used
+                    to release resources.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Architecture -->
+
+        <div class="card" style="margin-top:25px;">
+
+            <h2>Servlet Architecture</h2>
+
+            <p style="margin-top:15px; line-height:2;">
+
+                Student Browser
+                →
+                HTML Form
+                →
+                HTTP GET / POST
+                →
+                Servlet Container
+                →
+                StudentServlet
+                →
+                Processing
+                →
+                HTTP Response
+                →
+                Browser
+
+            </p>
+
+        </div>
+
+
+        <!-- GET and POST -->
+
+        <div class="card" style="margin-top:25px;">
+
+            <h2>GET vs POST</h2>
+
+            <table
+                style="
+                    width:100%;
+                    margin-top:20px;
+                    border-collapse:collapse;
+                "
+            >
+
+                <tr style="background:#243b53;color:white;">
+
+                    <th style="padding:12px;">
+                        GET
+                    </th>
+
+                    <th style="padding:12px;">
+                        POST
+                    </th>
+
+                </tr>
+
+                <tr>
+
+                    <td style="padding:12px;border:1px solid #ddd;">
+                        Data is sent through the URL.
+                    </td>
+
+                    <td style="padding:12px;border:1px solid #ddd;">
+                        Data is sent through the request body.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="padding:12px;border:1px solid #ddd;">
+                        Suitable for retrieving data.
+                    </td>
+
+                    <td style="padding:12px;border:1px solid #ddd;">
+                        Suitable for submitting data.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="padding:12px;border:1px solid #ddd;">
+                        Less suitable for sensitive information.
+                    </td>
+
+                    <td style="padding:12px;border:1px solid #ddd;">
+                        More appropriate for sensitive form data.
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            CSA43 - Internet Programming | Scenario-Based Assessment
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        function submitForm(method) {
+
+            const name =
+                document.getElementById("name").value;
+
+            const regno =
+                document.getElementById("regno").value;
+
+            const email =
+                document.getElementById("email").value;
+
+            const department =
+                document.getElementById("department").value;
+
+
+            if (
+                name === "" ||
+                regno === "" ||
+                email === "" ||
+                department === ""
+            ) {
+
+                alert("Please fill all the fields.");
+
+                return;
+
+            }
+
+
+            document.getElementById("method").textContent =
+                method;
+
+            document.getElementById("resultName").textContent =
+                name;
+
+            document.getElementById("resultRegno").textContent =
+                regno;
+
+            document.getElementById("resultEmail").textContent =
+                email;
+
+            document.getElementById("resultDepartment").textContent =
+                department;
+
+
+            document.getElementById("result").style.display =
+                "block";
+
+
+            if (method === "GET") {
+
+                alert(
+                    "GET request selected.\n\n" +
+                    "In a real Servlet application, " +
+                    "the request would be handled by doGet()."
+                );
+
+            } else {
+
+                alert(
+                    "POST request selected.\n\n" +
+                    "In a real Servlet application, " +
+                    "the request would be handled by doPost()."
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,1098 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>JDBC Product Management System</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #333;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background: #243b53;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 7px;
+        }
+
+        header p {
+            color: #d9e2ec;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 35px auto;
+        }
+
+
+        /* CARD */
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+        }
+
+        .card h2 {
+            color: #243b53;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #66788a;
+            margin-bottom: 22px;
+        }
+
+
+        /* FORM */
+
+        .form-row {
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd6e0;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #3498db;
+        }
+
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .add-btn {
+            background: #27ae60;
+        }
+
+        .view-btn {
+            background: #3498db;
+        }
+
+        .clear-btn {
+            background: #e74c3c;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+
+        /* MESSAGE */
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 13px;
+            border-radius: 6px;
+            background: #eafaf1;
+            color: #1e8449;
+        }
+
+
+        /* PRODUCT TABLE */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th {
+            background: #243b53;
+            color: white;
+            padding: 13px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        /* JDBC ARCHITECTURE */
+
+        .architecture {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .architecture-box {
+            padding: 18px;
+            min-width: 140px;
+            text-align: center;
+            border-radius: 8px;
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .arrow {
+            font-size: 25px;
+            color: #3498db;
+        }
+
+
+        /* STEPS */
+
+        .steps {
+            padding-left: 25px;
+            line-height: 2;
+            color: #5f6c7b;
+        }
+
+
+        /* CODE */
+
+        pre {
+            background: #17202a;
+            color: #ecf0f1;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+
+        /* TWO COLUMN */
+
+        .two-column {
+            display: grid;
+            grid-template-columns:
+                repeat(2, 1fr);
+            gap: 20px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            background: #243b53;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 750px) {
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .architecture {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            .container {
+                width: 95%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>JDBC Product Management System</h1>
+
+        <p>
+            Java Web Application with Database Connectivity
+        </p>
+
+    </header>
+
+
+
+    <div class="container">
+
+
+        <!-- PRODUCT FORM -->
+
+        <div class="card">
+
+            <h2>Add Product</h2>
+
+            <p class="description">
+                Enter product details to insert them into
+                the product database.
+            </p>
+
+
+            <form id="productForm">
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="productName">
+                            Product Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="productName"
+                            placeholder="Enter product name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="price">
+                            Price
+                        </label>
+
+                        <input
+                            type="number"
+                            id="price"
+                            placeholder="Enter price"
+                            step="0.01"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="quantity">
+                            Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantity"
+                            placeholder="Enter quantity"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        type="submit"
+                        class="add-btn"
+                    >
+                        Add Product
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="view-btn"
+                        onclick="displayProducts()"
+                    >
+                        View Products
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="clear-btn"
+                        onclick="clearProducts()"
+                    >
+                        Clear Products
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+            <div
+                class="message"
+                id="message"
+            ></div>
+
+
+        </div>
+
+
+
+        <!-- PRODUCT TABLE -->
+
+        <div
+            class="card"
+            id="productSection"
+        >
+
+            <h2>Product Details</h2>
+
+            <p class="description">
+                Retrieved product information from the
+                simulated database.
+            </p>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Product Name</th>
+
+                            <th>Price</th>
+
+                            <th>Quantity</th>
+
+                            <th>Total</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="productTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- JDBC ARCHITECTURE -->
+
+        <div class="card">
+
+            <h2>JDBC Architecture</h2>
+
+            <p class="description">
+                JDBC provides a standard interface for Java
+                applications to communicate with databases.
+            </p>
+
+
+            <div class="architecture">
+
+
+                <div class="architecture-box">
+                    Java Web Application
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-box">
+                    JDBC API
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-box">
+                    JDBC Driver
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-box">
+                    MySQL Database
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DATABASE STEPS -->
+
+        <div class="card">
+
+            <h2>
+                Steps for Database Connectivity
+            </h2>
+
+
+            <ol class="steps">
+
+                <li>
+                    Load the JDBC driver.
+                </li>
+
+                <li>
+                    Establish a connection with the database.
+                </li>
+
+                <li>
+                    Create a Statement or PreparedStatement.
+                </li>
+
+                <li>
+                    Execute SQL queries.
+                </li>
+
+                <li>
+                    Process the ResultSet for SELECT queries.
+                </li>
+
+                <li>
+                    Close ResultSet, Statement and Connection.
+                </li>
+
+                <li>
+                    Handle database exceptions using try-catch.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+
+        <!-- DATABASE SQL -->
+
+        <div class="two-column">
+
+
+            <div class="card">
+
+                <h2>Database Creation</h2>
+
+                <pre>
+CREATE DATABASE ecommerce;
+
+USE ecommerce;
+
+CREATE TABLE products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    price DOUBLE,
+    quantity INT
+);
+                </pre>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Insert Query</h2>
+
+                <pre>
+INSERT INTO products
+(name, price, quantity)
+VALUES (?, ?, ?);
+                </pre>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- SELECT QUERY -->
+
+        <div class="card">
+
+            <h2>Retrieve Product Query</h2>
+
+            <pre>
+SELECT * FROM products;
+            </pre>
+
+        </div>
+
+
+
+        <!-- JDBC CODE -->
+
+        <div class="card">
+
+            <h2>JDBC Connection Code</h2>
+
+            <pre>
+Class.forName(
+    "com.mysql.cj.jdbc.Driver"
+);
+
+Connection con =
+    DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/ecommerce",
+        "root",
+        ""
+    );
+
+PreparedStatement ps =
+    con.prepareStatement(
+        "INSERT INTO products " +
+        "(name, price, quantity) " +
+        "VALUES (?, ?, ?)"
+    );
+
+ps.setString(1, name);
+ps.setDouble(2, price);
+ps.setInt(3, quantity);
+
+ps.executeUpdate();
+
+ps.close();
+con.close();
+            </pre>
+
+        </div>
+
+
+
+        <!-- EXCEPTION HANDLING -->
+
+        <div class="card">
+
+            <h2>Exception Handling</h2>
+
+            <p class="description">
+                JDBC operations can generate exceptions such as
+                connection failures, invalid SQL statements and
+                incorrect database credentials. These exceptions
+                should be handled using try-catch blocks.
+            </p>
+
+
+            <pre>
+try {
+
+    Connection con =
+        DriverManager.getConnection(
+            URL,
+            USER,
+            PASSWORD
+        );
+
+    PreparedStatement ps =
+        con.prepareStatement(sql);
+
+    ps.executeUpdate();
+
+}
+catch (SQLException e) {
+
+    System.out.println(
+        "Database Error: "
+        + e.getMessage()
+    );
+
+}
+            </pre>
+
+        </div>
+
+
+
+        <!-- COMPLETE PROCESS -->
+
+        <div class="card">
+
+            <h2>JDBC Processing Flow</h2>
+
+
+            <div class="architecture">
+
+
+                <div class="architecture-box">
+                    HTML Form
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-box">
+                    Servlet
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-box">
+                    JDBC API
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-box">
+                    JDBC Driver
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-box">
+                    MySQL
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            CSA43 - Internet Programming |
+            Scenario-Based Assessment
+        </p>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        /*
+         * Temporary browser storage is used to simulate
+         * database operations because a normal HTML file
+         * cannot directly execute JDBC.
+         */
+
+
+        let products =
+            JSON.parse(
+                localStorage.getItem("products")
+            ) || [];
+
+
+        /*
+         * Add Product
+         */
+
+        document
+            .getElementById("productForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const name =
+                        document.getElementById(
+                            "productName"
+                        ).value;
+
+
+                    const price =
+                        parseFloat(
+                            document.getElementById(
+                                "price"
+                            ).value
+                        );
+
+
+                    const quantity =
+                        parseInt(
+                            document.getElementById(
+                                "quantity"
+                            ).value
+                        );
+
+
+                    if (
+                        name === "" ||
+                        isNaN(price) ||
+                        isNaN(quantity)
+                    ) {
+
+                        showMessage(
+                            "Please enter valid product details.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    const product = {
+
+                        id:
+                            products.length + 1,
+
+                        name:
+                            name,
+
+                        price:
+                            price,
+
+                        quantity:
+                            quantity
+
+                    };
+
+
+                    products.push(product);
+
+
+                    localStorage.setItem(
+                        "products",
+                        JSON.stringify(products)
+                    );
+
+
+                    showMessage(
+                        "Product inserted successfully. " +
+                        "In a real application, JDBC would " +
+                        "insert this record into MySQL.",
+                        "success"
+                    );
+
+
+                    document
+                        .getElementById(
+                            "productForm"
+                        )
+                        .reset();
+
+
+                    displayProducts();
+
+                }
+            );
+
+
+
+        /*
+         * Display Products
+         */
+
+        function displayProducts() {
+
+
+            const table =
+                document.getElementById(
+                    "productTable"
+                );
+
+
+            table.innerHTML = "";
+
+
+            if (products.length === 0) {
+
+                table.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            style="
+                                text-align:center;
+                                padding:20px;
+                            "
+                        >
+
+                            No products available.
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            products.forEach(
+                function(product) {
+
+
+                    const total =
+                        product.price *
+                        product.quantity;
+
+
+                    const row = `
+
+                        <tr>
+
+                            <td>
+                                ${product.id}
+                            </td>
+
+                            <td>
+                                ${product.name}
+                            </td>
+
+                            <td>
+                                ₹${product.price.toFixed(2)}
+                            </td>
+
+                            <td>
+                                ${product.quantity}
+                            </td>
+
+                            <td>
+                                ₹${total.toFixed(2)}
+                            </td>
+
+                        </tr>
+
+                    `;
+
+
+                    table.innerHTML += row;
+
+                }
+            );
+
+        }
+
+
+
+        /*
+         * Clear Products
+         */
+
+        function clearProducts() {
+
+            products = [];
+
+            localStorage.removeItem(
+                "products"
+            );
+
+            displayProducts();
+
+            showMessage(
+                "All products have been cleared.",
+                "success"
+            );
+
+        }
+
+
+
+        /*
+         * Display Message
+         */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+
+            message.style.display =
+                "block";
+
+
+            message.textContent =
+                text;
+
+
+            if (type === "error") {
+
+                message.style.background =
+                    "#fdecea";
+
+                message.style.color =
+                    "#c0392b";
+
+            } else {
+
+                message.style.background =
+                    "#eafaf1";
+
+                message.style.color =
+                    "#1e8449";
+
+            }
+
+
+            setTimeout(
+                function() {
+
+                    message.style.display =
+                        "none";
+
+                },
+                4000
+            );
+
+        }
+
+
+
+        /*
+         * Load products when page opens
+         */
+
+        window.onload =
+            function() {
+
+                displayProducts();
+
+            };
+
+
+    </script>
+
+
+</body>
+
+</html>
+```

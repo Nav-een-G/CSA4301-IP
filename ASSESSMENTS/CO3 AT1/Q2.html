@@ -1,0 +1,892 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Session Management System</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f3f6f9;
+            color: #333;
+        }
+
+
+        /* Header */
+
+        header {
+            background: #243b53;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #d9e2ec;
+        }
+
+
+        /* Main */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+
+        /* Login Card */
+
+        .login-card {
+            width: 400px;
+            max-width: 100%;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .login-card h2 {
+            text-align: center;
+            color: #243b53;
+            margin-bottom: 8px;
+        }
+
+        .login-card .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 25px;
+        }
+
+
+        /* Form */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd6e0;
+            border-radius: 6px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #5865f2;
+        }
+
+
+        /* Button */
+
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            background: #5865f2;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #4752c4;
+        }
+
+
+        /* Dashboard */
+
+        .dashboard {
+            display: none;
+            margin-top: 25px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .dashboard h2 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        .dashboard p {
+            margin: 8px 0;
+        }
+
+
+        /* Logout */
+
+        .logout-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+
+        /* Information */
+
+        .section {
+            background: white;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .section h2 {
+            color: #243b53;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            line-height: 1.7;
+            color: #5f6c7b;
+        }
+
+
+        /* Tracking Flow */
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .flow-box {
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .arrow {
+            font-size: 25px;
+            color: #5865f2;
+        }
+
+
+        /* Comparison Table */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th {
+            background: #243b53;
+            color: white;
+            padding: 13px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        /* Status */
+
+        .status {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            background: #fff8e1;
+            color: #8a6500;
+            display: none;
+        }
+
+
+        /* Footer */
+
+        footer {
+            margin-top: 40px;
+            background: #243b53;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 95%;
+            }
+
+            .flow {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <header>
+
+        <h1>Session Management System</h1>
+
+        <p>
+            Java Servlet - HttpSession and Cookies
+        </p>
+
+    </header>
+
+
+    <div class="container">
+
+
+        <!-- Login -->
+
+        <div class="login-card" id="loginCard">
+
+            <h2>User Login</h2>
+
+            <p class="subtitle">
+                Login to access your dashboard
+            </p>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <div
+                id="status"
+                class="status"
+            ></div>
+
+        </div>
+
+
+        <!-- Dashboard -->
+
+        <div
+            id="dashboard"
+            class="dashboard"
+        >
+
+            <h2>Login Successful</h2>
+
+            <p>
+                Welcome,
+                <strong id="welcomeUser"></strong>
+            </p>
+
+            <p>
+                <strong>Session Status:</strong>
+                Active
+            </p>
+
+            <p>
+                <strong>Cookie Status:</strong>
+                Created
+            </p>
+
+            <p>
+                <strong>Session Tracking:</strong>
+                Enabled
+            </p>
+
+            <button
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+        <!-- Session Tracking -->
+
+        <div class="section">
+
+            <h2>
+                How Session Tracking Works
+            </h2>
+
+            <p>
+                Session tracking allows a web application to
+                identify a user across multiple requests and
+                pages after authentication.
+            </p>
+
+
+            <div class="flow">
+
+                <div class="flow-box">
+                    User Login
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="flow-box">
+                    Servlet
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="flow-box">
+                    HttpSession
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="flow-box">
+                    Session ID
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="flow-box">
+                    Multiple Pages
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HttpSession -->
+
+        <div class="section">
+
+            <h2>
+                HttpSession
+            </h2>
+
+            <p>
+                HttpSession is a server-side session management
+                mechanism provided by Java Servlets. After a
+                successful login, the server creates a session
+                using request.getSession() and stores user
+                information using setAttribute().
+            </p>
+
+            <br>
+
+            <p>
+
+                Example:
+
+            </p>
+
+            <pre style="
+                background:#f1f5f9;
+                padding:15px;
+                margin-top:10px;
+                border-radius:6px;
+                overflow:auto;
+            ">
+HttpSession session = request.getSession();
+
+session.setAttribute("username", username);
+
+String user =
+    (String) session.getAttribute("username");
+            </pre>
+
+        </div>
+
+
+        <!-- Cookies -->
+
+        <div class="section">
+
+            <h2>
+                Cookies
+            </h2>
+
+            <p>
+                Cookies are small pieces of information stored
+                in the user's browser. A servlet can create a
+                cookie and send it to the browser. The browser
+                sends the cookie back with subsequent requests.
+            </p>
+
+            <br>
+
+            <pre style="
+                background:#f1f5f9;
+                padding:15px;
+                border-radius:6px;
+                overflow:auto;
+            ">
+Cookie cookie =
+    new Cookie("username", username);
+
+cookie.setMaxAge(3600);
+
+response.addCookie(cookie);
+            </pre>
+
+        </div>
+
+
+        <!-- Comparison -->
+
+        <div class="section">
+
+            <h2>
+                Session vs Cookies
+            </h2>
+
+
+            <table>
+
+                <tr>
+
+                    <th>
+                        HttpSession
+                    </th>
+
+                    <th>
+                        Cookies
+                    </th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Session information is maintained
+                        on the server.
+                    </td>
+
+                    <td>
+                        Cookie information is stored
+                        in the browser.
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        More suitable for maintaining
+                        authenticated user state.
+                    </td>
+
+                    <td>
+                        Useful for preferences and
+                        user identification.
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Session ID identifies the user.
+                    </td>
+
+                    <td>
+                        Cookie name and value identify
+                        stored information.
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Session can expire after inactivity.
+                    </td>
+
+                    <td>
+                        Cookie can have a specified expiry time.
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Sensitive information should remain
+                        on the server.
+                    </td>
+
+                    <td>
+                        Sensitive information should not
+                        be directly stored in cookies.
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <!-- Servlet Process -->
+
+        <div class="section">
+
+            <h2>
+                Servlet Session Management Process
+            </h2>
+
+            <ol style="
+                line-height:2;
+                padding-left:25px;
+                color:#5f6c7b;
+            ">
+
+                <li>
+                    User enters username and password.
+                </li>
+
+                <li>
+                    Login request is sent to the servlet.
+                </li>
+
+                <li>
+                    Servlet validates the credentials.
+                </li>
+
+                <li>
+                    HttpSession is created.
+                </li>
+
+                <li>
+                    Username is stored in the session.
+                </li>
+
+                <li>
+                    A session ID is maintained between
+                    the browser and server.
+                </li>
+
+                <li>
+                    The user can access multiple pages
+                    without logging in again.
+                </li>
+
+                <li>
+                    The session is destroyed when the user
+                    logs out or the session expires.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            CSA43 - Internet Programming |
+            Scenario-Based Assessment
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+
+        /*
+         * Login simulation
+         *
+         * In a real Java Servlet application,
+         * this request would be sent to LoginServlet.
+         */
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    document.getElementById("username").value;
+
+                const password =
+                    document.getElementById("password").value;
+
+
+                const status =
+                    document.getElementById("status");
+
+
+                /*
+                 * Demo credentials
+                 */
+
+                if (
+                    username === "admin" &&
+                    password === "1234"
+                ) {
+
+
+                    /*
+                     * Create a browser cookie
+                     */
+
+                    document.cookie =
+                        "username=" +
+                        encodeURIComponent(username) +
+                        "; max-age=3600; path=/";
+
+
+                    /*
+                     * Simulate HttpSession
+                     * using sessionStorage
+                     */
+
+                    sessionStorage.setItem(
+                        "username",
+                        username
+                    );
+
+
+                    /*
+                     * Display dashboard
+                     */
+
+                    document.getElementById(
+                        "loginCard"
+                    ).style.display = "none";
+
+
+                    document.getElementById(
+                        "dashboard"
+                    ).style.display = "block";
+
+
+                    document.getElementById(
+                        "welcomeUser"
+                    ).textContent = username;
+
+
+                } else {
+
+
+                    status.style.display = "block";
+
+                    status.textContent =
+                        "Invalid username or password. " +
+                        "Use admin / 1234 for demonstration.";
+
+                }
+
+            });
+
+
+
+        /*
+         * Logout
+         */
+
+        function logout() {
+
+
+            /*
+             * Remove session simulation
+             */
+
+            sessionStorage.removeItem("username");
+
+
+            /*
+             * Remove cookie
+             */
+
+            document.cookie =
+                "username=; max-age=0; path=/";
+
+
+            /*
+             * Show login screen
+             */
+
+            document.getElementById(
+                "dashboard"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "loginCard"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "loginForm"
+            ).reset();
+
+
+            alert(
+                "You have been logged out successfully."
+            );
+
+        }
+
+
+        /*
+         * Check existing session
+         * when page loads
+         */
+
+        window.onload = function() {
+
+
+            const savedUser =
+                sessionStorage.getItem("username");
+
+
+            if (savedUser) {
+
+                document.getElementById(
+                    "loginCard"
+                ).style.display = "none";
+
+
+                document.getElementById(
+                    "dashboard"
+                ).style.display = "block";
+
+
+                document.getElementById(
+                    "welcomeUser"
+                ).textContent = savedUser;
+
+            }
+
+        };
+
+
+    </script>
+
+
+</body>
+
+</html>
+```
