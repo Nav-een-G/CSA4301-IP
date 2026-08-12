@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - Servlet Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #eef6ff;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .architecture {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 2;
+        }
+
+        .box {
+            background: #007bff;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .arrow {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Student Registration</h1>
+
+    <form id="registrationForm">
+
+        <label for="name">Student Name</label>
+        <input type="text" id="name" required>
+
+        <label for="regno">Register Number</label>
+        <input type="text" id="regno" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+
+        <label for="course">Course</label>
+        <select id="course" required>
+            <option value="">Select Course</option>
+            <option value="B.E. Computer Science Engineering">
+                B.E. Computer Science Engineering
+            </option>
+            <option value="B.Tech Information Technology">
+                B.Tech Information Technology
+            </option>
+            <option value="B.E. Electronics and Communication">
+                B.E. Electronics and Communication
+            </option>
+        </select>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+
+    <div class="result" id="result">
+
+        <h2>Registration Successful</h2>
+
+        <p>
+            <b>Student Name:</b>
+            <span id="resultName"></span>
+        </p>
+
+        <p>
+            <b>Register Number:</b>
+            <span id="resultRegno"></span>
+        </p>
+
+        <p>
+            <b>Email:</b>
+            <span id="resultEmail"></span>
+        </p>
+
+        <p>
+            <b>Course:</b>
+            <span id="resultCourse"></span>
+        </p>
+
+        <p>
+            <b>Password:</b>
+            Received Successfully
+        </p>
+
+        <p>
+            <b>Request Method:</b> POST
+        </p>
+
+    </div>
+
+
+    <div class="architecture">
+
+        <h2>Servlet Architecture</h2>
+
+        <div class="box">Student / Browser</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">HTTP Request</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">Apache Tomcat</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">Java Servlet</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">Process Form Data</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">HTTP Response</div>
+
+    </div>
+
+
+    <div class="architecture">
+
+        <h2>Servlet Life Cycle</h2>
+
+        <div class="box">init()</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">service()</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">doGet() / doPost()</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="box">destroy()</div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            // Get form values
+            let name =
+                document.getElementById("name").value;
+
+            let regno =
+                document.getElementById("regno").value;
+
+            let email =
+                document.getElementById("email").value;
+
+            let course =
+                document.getElementById("course").value;
+
+            // Display submitted data
+            document
+                .getElementById("resultName")
+                .textContent = name;
+
+            document
+                .getElementById("resultRegno")
+                .textContent = regno;
+
+            document
+                .getElementById("resultEmail")
+                .textContent = email;
+
+            document
+                .getElementById("resultCourse")
+                .textContent = course;
+
+            document
+                .getElementById("result")
+                .style.display = "block";
+
+        });
+
+</script>
+
+</body>
+</html>
